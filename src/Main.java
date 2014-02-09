@@ -4,28 +4,28 @@ import java.io.InputStreamReader;
 
 public class Main{
 
-    private static final char xChar = 'X';
+    private static final char X_CHAR = 'X';
 
-    private static final char oChar = 'O';
+    private static final char O_CHAR = 'O';
+
+    private static final int NUM_FOR_EXIT = 9;
 
     public static void game() throws IOException {
+
         Field field = new Field();
 
         field.newGame();
 
-        boolean infiniGame = true;
-        char turn = xChar;
+        char turn = X_CHAR;
 
+        while(true){
 
-
-
-        while(infiniGame){
             field.getField();
 
             BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
             int num1 = Integer.parseInt(reader.readLine())-1;
-            if(num1 > 9){
-                infiniGame = false;
+            if(num1 > NUM_FOR_EXIT){
+                break;
             }
             int num2 = Integer.parseInt(reader.readLine())-1;
 
@@ -33,34 +33,26 @@ public class Main{
 
             if(field.newTurn(num1, num2, turn))
             {
-                if(field.checkWin(turn))
+                if(field.checkWin(turn))                 //проверка на победу
                 {
                     System.out.println("Выйграл игрок:" + turn);
                 }
                 else
                 {
-
                     System.out.println("Следующий ход");
 
-                    if(turn == xChar){			//смена символа х/о
-                        turn = oChar;			//
+                    if(turn == X_CHAR){			//смена символа х/о
+                        turn = O_CHAR;			//
                     }							//
                     else{						//
-                        turn = xChar;
+                        turn = X_CHAR;
                     }
-
-
-
-
                 }				//конец смены х/о
             }
             else
             {
                 System.out.println("Иди домой");
             }
-
-
-
         }
     }
 
