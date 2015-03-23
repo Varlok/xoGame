@@ -2,6 +2,8 @@ import java.io.IOException;
 
 public class Field{
 
+
+
     private static final int FIELD_SIZE = 3;
 
     private char[][] field = new char[FIELD_SIZE][FIELD_SIZE];
